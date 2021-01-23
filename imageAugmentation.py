@@ -33,11 +33,13 @@ def randomImageAugment(imageFolder,maskFolder,des):
     #read image
     images,name=load_images_from_folder(imageFolder)
     masks, _ = load_images_from_folder(maskFolder)
-    rand=random.randint(1,3)
+    rand=random.randint(1,4)
     if rand==1:
         aug = iaa.Fliplr(1)
     elif rand==2:
         aug = iaa.Rot90(1)
+    elif rand==3:
+        aug = iaa.Cutout(fill_mode="constant", cval=255)       
     else:
         aug = iaa.Rot90(2)
     for i in range(images.__len__()):
